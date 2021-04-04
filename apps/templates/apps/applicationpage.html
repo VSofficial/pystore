@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
-<h1>{{Hello}}</h1>
+<h1>{{context.app}}</h1>
 <br>
-<a href="{% url 'authapp:edit' %}" class="btn btn-primary">Hello</a> or
+<a href="{% url 'authapp:edit' %}" class="btn btn-primary">{{ context.app }}</a> or
 <a href="{% url 'authapp:password_change' %}" class="btn btn-warning">Change your password</a>
 <hr>
 <!-- Image Display -->
-<img src="{{ context.icon }}" alt="{{ context.app }}">
+<img src={{ context.icon }} alt={{ context.app }}>
+
+<!-- Image Display -->
+
+<!-- <img src="E:\Project\pystore\_autofixture\100x100_2.png" alt="h"> -->
 
 {% endblock content %}

@@ -1,7 +1,6 @@
 from django.db import models
 import re
-import factory 
-import factory.django
+
 
 # Create your models here.
 '''
@@ -19,16 +18,3 @@ class AppModel(models.Model):
     app_exe = models.FileField(upload_to=developer)
     icon = models.ImageField(upload_to=developer)
 
-class AppFactory(factory.django.DjangoModelFactory):  
-    class Meta:
-        model = AppModel
-
-    name = factory.Faker('name')
-    address = factory.Faker('address')
-    phone_number = factory.Faker('phone_number')
-    appname = factory.Faker('appname')
-    version = factory.Faker('version')
-    developer = factory.Faker('developer')
-    app_py = factory.Faker('app_py')
-    app_exe = factory.Faker('app_exe')
-    icon = factory.Faker('icon')

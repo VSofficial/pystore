@@ -11,7 +11,7 @@ def dashboard(request):
     context = {
         "welcome": "Welcome to your dashboard"
     }
-    return render(request, 'authapp/dashboard.html', context=context)
+    return render(request, 'apps/dashboard.html', context=context)
 
 
 def register(request):

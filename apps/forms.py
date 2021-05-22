@@ -1,17 +1,17 @@
 from django.forms import ModelForm
-from apps.models import AppModel
+from .models import AppModel
 
 
 class AppForm(ModelForm):
-     class Meta:
-         model = AppModel
-         fields = ['pub_date', 'headline', 'content', 'reporter']
-         widgets = {
-            'name': TextInput(),
-            'description': Textarea(attrs={'cols':80},'rows':20)
-        }
+  class Meta:
+   model = AppModel
+   fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon']
+         
+  
 
- form = AppForm()
 
- app = AppModel.objects.get(pk=1)
- form = AppForm(instance=app)
+'''
+class ApplicationForm(forms.Form):
+        form_field1 = forms.CharField(max_length=40, required=True)
+        form_field2 = forms.CharField(max_length=60, required=False)
+'''

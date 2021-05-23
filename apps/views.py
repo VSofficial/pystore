@@ -31,40 +31,23 @@ def app_form(request):
             print("VALID")
 
     form = AppForm()
-    return render(request, 'apps/applicationpage.html', {'form':form})
+    return render(request, 'apps/app_upload.html', {'form':form})
+
+class AppView(DetailView):
+    model = AppModel
+    template_name = 'apps/app_page.html'
+    context_object_name = 'apps'
+
+    
 
 
 
 
 '''
-def upload(request):
-    context = {}
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'upload.html', context)
-'''
-'''
-def upload_app(request):
-    if request.method == 'POST':
-        form = AppForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard.html')
-    else:
-        form = AppForm()
-    return render(request, 'upload_book.html', {
-        'form': form
-    })
-
-
 class AppDetailView(DetailView):
     model = AppModel
     template_name = 'applicationpage.html'
     context_object_name = 'apps'
-
 '''
 
 '''

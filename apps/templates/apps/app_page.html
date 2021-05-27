@@ -10,8 +10,30 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="card">
-        <div class="card-body">Basic card {{apps.appname}}</div>
+    <div class="card  p-3 my-4 mx-auto" style="width:800px" >
+        
+        <div card="card-body" style="height:500px">
+           <div class="row">
+            <div class="col-sm-3">
+            {% if apps.icon %}
+            <img src="{{ apps.icon.url }}" width="150px" height="150px" />
+            {% endif %}
+            </div>
+
+            <div class="col-sm-6">
+              <h3> {{apps.appname}}</h3>  <lable> Developed by {{ apps.developer }}</lable>
+            </div>
+
+            <div class="col-sm-3">    <lable> Stats</lable> </div>
+           </div>
+     
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">   Requires Python 3.1+ <br> Download Python Runtime Environment</div>
+            <div class="col-sm-3"><button type="button" class="btn btn-success" style="width:100px">Install</button></div>
+          </div>
+        
+        </div>
       </div>
 </body>
 </html>

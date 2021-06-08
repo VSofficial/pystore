@@ -7,16 +7,6 @@ from .models import AppModel
 
 # Create your views here.
 
-def applicationpage(request):
-    context = {
-        "app" : AppModel.appname,
-        "version" : AppModel.version,
-        "developer" : AppModel.developer,
-        "py-file" : AppModel.app_py,
-        "exe-file" : AppModel.app_exe,
-        "icon" : AppModel.icon,
-         }
-    return render(request, 'apps/abcd.html', context=context)
 
 
 def app_form(request):
@@ -37,6 +27,7 @@ class AppView(DetailView):
     model = AppModel
     template_name = 'apps/app_page.html'
     context_object_name = 'apps'
+    slug_url_kwarg = 'slug'
 
     
 

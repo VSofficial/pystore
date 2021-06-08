@@ -1,7 +1,7 @@
 from django.utils.text import slugify
 from django.db import models
 import re
-
+import datetime
 
 # Create your models here.
 '''
@@ -19,7 +19,24 @@ class AppModel(models.Model):
     app_exe = models.FileField(upload_to='main/exe')
     icon = models.ImageField(upload_to='main/icons')
     slug = models.SlugField(unique=True, default='default')
-    
+    description = models.TextField(default="No description by publisher", null=True)
+    screenshots = models.ImageField(upload_to='main/screenshots', null=True)
+    requirement = models.CharField(blank=True, null=True, max_length=50)
+    update_date =models.DateField(auto_now=True)
+
+    CATEGORY_CHOICE = (
+    ('ML', "Machine Learning"),
+    ('BIGDATA', "Big Data"),
+    ('AUTOMATION', "Automation"),
+    ('OPENCV', "Image/Video Processing"),
+    ('PRODUCTIVITY', "Productivity / Office Tools"),
+    ('DATASCIENCE', "Data Science"),
+    ('DRIVERS', "Drivers/Database/System Programs"),
+    ('DATAPROCESSING', "Data Processing"),
+    ('MISC', "Others"),
+     )
+     
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICE, default='MISC')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.appname+self.developer)
@@ -29,5 +46,4 @@ class AppModel(models.Model):
         return self.appname
 
    
-
 

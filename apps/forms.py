@@ -5,7 +5,7 @@ from .models import AppModel
 class AppForm(ModelForm):
   class Meta:
    model = AppModel
-   fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon']
+   fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon', 'description', 'screenshots', 'requirement', 'category']
          
   
 

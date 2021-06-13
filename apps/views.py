@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from .forms import AppForm
 from .models import AppModel
 
@@ -29,23 +30,16 @@ class AppView(DetailView):
     context_object_name = 'apps'
     slug_url_kwarg = 'slug'
 
-    
+class AppListView(ListView):
 
-
-
-
-'''
-class AppDetailView(DetailView):
     model = AppModel
-    template_name = 'applicationpage.html'
-    context_object_name = 'apps'
-'''
+    template_name = 'apps/homepage.html'
+    context_object_name= 'apps_list'
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
-'''
-class UploadAppView(CreateView):
-    model = AppModel
-    form_class = AppForm
-    success_url = reverse_lazy('class_book_list')
-    template_name = 'upload_book.html'
-
-'''
+    def get_queryset(self):
+        app_data = self.model.objects.all()
+        return app_data

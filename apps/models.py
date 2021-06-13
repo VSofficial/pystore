@@ -64,6 +64,7 @@ class Issues(models.Model):
 class AppStats(models.Model):
     total_downloads = models.IntegerField(default=0)
     total_ratings = models.IntegerField(default=0)
+    download_size_py = models.IntegerField(default=0)
+    download_size_windows = models.IntegerField(default=0)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
     
-

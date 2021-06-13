@@ -2,5 +2,19 @@
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
 
+<lable> Hii</lable>
 
+<div class="row" id="container" style="overflow-y:auto;">
+{% for apps in apps_list %}
+<div class="col-xxl-6 col-md-3">
+<div class="card" style="width:200px; height:250px; margin:2px;">
+    <lable> Hii</lable>
+    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+    <div class="card-body">
+    <h4 class="card-title">{{apps.appname}}</h4>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
 {% endblock content %}

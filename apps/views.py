@@ -3,7 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .forms import AppForm
-from .models import AppModel
+from .models import AppModel, Issues, AppStats
 
 
 # Create your views here.
@@ -30,6 +30,12 @@ class AppView(DetailView):
     context_object_name = 'apps'
     slug_url_kwarg = 'slug'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['issues'] = Issues.objects.all()
+        context['stats'] = AppStats.objects.all()
+        return context
+
 class AppListView(ListView):
 
     model = AppModel
@@ -43,3 +49,13 @@ class AppListView(ListView):
     def get_queryset(self):
         app_data = self.model.objects.all()
         return app_data
+
+'''
+      def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['roles'] = Role.objects.all()
+        context['venue_list'] = Venue.objects.all()
+        context['festival_list'] = Festival.objects.all()
+        # And so on for more models
+        return context
+'''

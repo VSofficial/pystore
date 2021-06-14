@@ -45,11 +45,12 @@ class AppModel(models.Model):
     def __str__(self):
         return self.appname
 
-
+'''
 class UserRating(models.Model):
     rating = models.FloatField(blank=True, null=True, max_length=10.0)
     user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
-    
+'''
+ 
 class Comments(models.Model):
     comment = models.CharField(max_length=200, blank=True, null=True)
     user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
@@ -67,4 +68,5 @@ class AppStats(models.Model):
     download_size_py = models.IntegerField(default=0)
     download_size_windows = models.IntegerField(default=0)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
+
     

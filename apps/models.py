@@ -69,4 +69,6 @@ class AppStats(models.Model):
     download_size_windows = models.IntegerField(default=0)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
 
+class Screenshots(models.Model):
+    print('hi')
     

@@ -24,7 +24,7 @@
               <h3> {{apps.appname}}</h3>  <lable> Developed by {{ apps.developer }}</lable>
             </div>
            {% for ratings in stats %}
-            <div class="col-sm-3">    <lable> User Ratings</lable> </br> <lable>{{ratings.total_ratings}}</lable></div>
+            <div class="col-sm-3" style="text-align: center;">    <lable> User Ratings</lable> </br> <lable >{{ratings.total_ratings}}/10</lable></div>
             {% endfor %}
            </div>
      

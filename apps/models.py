@@ -20,7 +20,6 @@ class AppModel(models.Model):
     icon = models.ImageField(upload_to='icons')
     slug = models.SlugField(unique=True, default='default')
     description = models.TextField(default="No description by publisher", null=True)
-    screenshots = models.ImageField(upload_to='screenshots', null=True)
     requirement = models.CharField(blank=True, null=True, max_length=50)
     update_date =models.DateField(auto_now=True)
 
@@ -59,7 +58,6 @@ class Comments(models.Model):
 class Issues(models.Model):
     issue = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
-    screenshots = models.ImageField(upload_to='issues', null=True)
 
 
 class AppStats(models.Model):
@@ -70,5 +68,7 @@ class AppStats(models.Model):
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
 
 class Screenshots(models.Model):
-    print('hi')
+    image = models.ImageField(upload_to='screenshots')
+    app = models.ForeignKey(AppModel, null=True, blank=True, on_delete=models.CASCADE)
+
     

@@ -12,7 +12,7 @@ app_name='apps'
 
 urlpatterns = [
   #  path("r/", applicationpage, name='appx'),
-    path("a/", app_form, name="appform"),
+    path("upload/", app_form, name="appform"),
     path("apps/<slug>", AppView.as_view(), name="appview"),
     path("home/", AppListView.as_view(), name="applist"),
    # path("<str:appname>", AppDetailView.as_view(), name="appname" ),

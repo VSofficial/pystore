@@ -6,6 +6,8 @@
 <a href="{% url 'authapp:edit' %}" class="btn btn-primary">Edit Your Profile</a> or
 <a href="{% url 'authapp:password_change' %}" class="btn btn-warning">Change your password</a>
 <hr>
-<button class="btn btn-primary" onclick='location.href="{% url 'apps:appform' %}" '>Upload your app</button>
+<button class="btn btn-primary" onclick='location.href="{% url 'apps:appformset' %}" '>Upload your app</button>
+<hr>
+<h4> Your apps </h4>
 
 {% endblock content %}

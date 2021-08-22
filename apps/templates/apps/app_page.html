@@ -12,7 +12,7 @@
 <body>
     <div class="card  p-3 my-4 mx-auto" style="width:800px" >
         
-        <div card="card-body" style="height:500px">
+        <div card="card-body" style="height:225px">
            <div class="row">
             <div class="col-sm-3">
             {% if apps.icon %}
@@ -28,14 +28,14 @@
             {% endfor %}
            </div>
      
-        <div class="row">
+        <div class="row" >
             <div class="col-sm-3"></div>
             <div class="col-sm-6">   Requires Python 3.1+ <br> Download Python Runtime Environment</div>
             <div class="col-sm-3"> <a class="btn btn-success" style="width:100px" href="{{ apps.app_py.url }}" download>Install</a></div>
-            
-          </div>
-        
+
         </div>
+         </div>
+        {% include 'apps/image_carousel.html' %}      
       </div>
 </body>
 </html>

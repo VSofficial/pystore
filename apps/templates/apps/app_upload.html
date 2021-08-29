@@ -12,16 +12,47 @@
     <title>Document</title>
 </head>
 <body>
-<table>
-<form enctype="multipart/form-data" method='post'>
-{% csrf_token %}
-{% bootstrap_form form %}
-{{ form.errors }}
-{{ form.non_field_errors }}
-</table>
-<button class="btn btn-success" type='submit'>Submit</button>
+<div id="accordion" style="margin:20px; width:auto; max-width: 1000px;">
+
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        Application Details
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+      <div class="card-body">
+        <table>
+        <form enctype="multipart/form-data" method='post'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+        </table>
+        <button class="btn btn-success" type='submit'>Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        Screenshots
+      </a>
+    </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        Lorem ipsum..
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>
 
 </body>
 </html>
 {% endblock content %}
+
 

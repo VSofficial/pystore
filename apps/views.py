@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .forms import AppForm
+from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
 from .models import AppModel, Issues, AppStats, Screenshots
 
@@ -10,7 +11,7 @@ from .models import AppModel, Issues, AppStats, Screenshots
 # Create your views here.
 
 
-
+@login_required
 def app_form(request):
     
     if request.method == 'POST':
@@ -21,7 +22,6 @@ def app_form(request):
         if form.is_valid():
             form.save()
             print("VALID")
-
 
 
     form = AppForm()
@@ -74,13 +74,3 @@ class AppListView(ListView):
     def get_queryset(self):
         app_data = self.model.objects.all()
         return app_data
-
-'''
-      def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['roles'] = Role.objects.all()
-        context['venue_list'] = Venue.objects.all()
-        context['festival_list'] = Festival.objects.all()
-        # And so on for more models
-        return context
-'''

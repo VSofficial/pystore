@@ -5,6 +5,10 @@ from .models import AppModel, AppStats, Comments, Issues
 from apps import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetDoneView, PasswordResetView,
+                                       PasswordResetCompleteView, PasswordResetConfirmView,
+                                       PasswordChangeView, PasswordChangeDoneView,
+                                       PasswordResetDoneView)
 app_name='apps'
 
 

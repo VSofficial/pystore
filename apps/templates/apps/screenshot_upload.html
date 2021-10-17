@@ -1,1 +1,15 @@
-<p> Dropzone </p>
+{% load bootstrap4 %}
+{% block content %}
+
+<div>
+<table>
+    <form enctype="multipart/form-data" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form2 %}
+    {{ form2.errors }}
+    {{ form2.non_field_errors }}
+</table>
+<button class="btn btn-success" type='submit'>Submit</button>
+</div>
+
+{% endblock content %}

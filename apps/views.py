@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .forms import AppForm
+from .forms import AppForm, ScreenshotForm
 from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
 from .models import AppModel, Issues, AppStats, Screenshots
@@ -17,15 +17,34 @@ def app_form(request):
     if request.method == 'POST':
      
         form = AppForm(request.POST, request.FILES)
+        form2 = ScreenshotForm(request.POST, request.FILES)
         print(form.errors)
+        print(form2.errors)
 
         if form.is_valid():
             form.save()
             print("VALID")
+        
+        if form2.is_valid():
+            form.save()
+            print("VAlID")
 
 
     form = AppForm()
-    return render(request, 'apps/app_upload.html', {'form':form})
+    form2 = ScreenshotForm()
+    return render(request, 'apps/app_upload.html', {'form':form, 'form2':form2})
+
+@login_required
+def screenshot_form(request):
+
+    if request.method == "POST":
+        form = ScreenshotForm(request.POST, request.FILES)
+        print(form.errors)
+
+        if form.is_valid():
+            form.save()
+            print("VAlID")
+        
 
 '''
 def app_formset(request):

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import AppModel
+from .models import AppModel, Screenshots
 
 
 class AppForm(ModelForm):
@@ -8,6 +8,10 @@ class AppForm(ModelForm):
    fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon', 'description', 'requirement', 'category']
          
   
+class ScreenshotForm(ModelForm):
+        class Meta:
+                model = Screenshots
+                fields = ['image', 'app']
 
 
 '''

@@ -1,17 +1,12 @@
 from django.forms import ModelForm
-from .models import AppModel, Screenshots
+from .models import AppModel
 
 
 class AppForm(ModelForm):
   class Meta:
    model = AppModel
-   fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon', 'description', 'requirement', 'category']
+   fields = ['appname', 'version', 'developer', 'app_py', 'app_exe', 'icon', 'screenshot','description', 'requirement', 'category']
          
-  
-class ScreenshotForm(ModelForm):
-        class Meta:
-                model = Screenshots
-                fields = ['image', 'app']
 
 
 '''

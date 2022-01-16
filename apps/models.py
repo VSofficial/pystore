@@ -4,12 +4,7 @@ import re
 import datetime
 from authapp.models import UserRegistrationModel
 # Create your models here.
-'''
-def get_matchname(a, b):
-    """Returns the match name for a tag"""
-    #return re.sub("\W+" , "", self.a, self.b)
-    return (a+"/"+b)
-'''
+
 
 class AppModel(models.Model):
     appname = models.CharField(max_length=100)
@@ -18,6 +13,7 @@ class AppModel(models.Model):
     app_py = models.FileField(upload_to='python')
     app_exe = models.FileField(upload_to='exe')
     icon = models.ImageField(upload_to='icons')
+    screenshot = models.ImageField(upload_to='screenshot', null=True)
     slug = models.SlugField(unique=True, default='default')
     description = models.TextField(default="No description by publisher", null=True)
     requirement = models.CharField(blank=True, null=True, max_length=50)
@@ -44,11 +40,7 @@ class AppModel(models.Model):
     def __str__(self):
         return self.appname
 
-'''
-class UserRating(models.Model):
-    rating = models.FloatField(blank=True, null=True, max_length=10.0)
-    user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
-'''
+
  
 class Comments(models.Model):
     comment = models.CharField(max_length=200, blank=True, null=True)
@@ -59,6 +51,10 @@ class Issues(models.Model):
     issue = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
 
+class Rating(models.Model):
+    rating = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
+
 
 class AppStats(models.Model):
     total_downloads = models.IntegerField(default=0)
@@ -67,8 +63,3 @@ class AppStats(models.Model):
     download_size_windows = models.IntegerField(default=0)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
 
-class Screenshots(models.Model):
-    image = models.ImageField(upload_to='screenshots')
-    app = models.ForeignKey(AppModel, null=True, blank=True, on_delete=models.CASCADE)
-
-    

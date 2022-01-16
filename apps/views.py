@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .forms import AppForm, ScreenshotForm
+from .forms import AppForm
 from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
-from .models import AppModel, Issues, AppStats, Screenshots
+from .models import AppModel, Issues, AppStats
 
 
 # Create your views here.
@@ -17,56 +17,16 @@ def app_form(request):
     if request.method == 'POST':
      
         form = AppForm(request.POST, request.FILES)
-        form2 = ScreenshotForm(request.POST, request.FILES)
         print(form.errors)
-        print(form2.errors)
 
         if form.is_valid():
             form.save()
             print("VALID")
         
-        if form2.is_valid():
-            form.save()
-            print("VAlID")
-
 
     form = AppForm()
-    form2 = ScreenshotForm()
-    return render(request, 'apps/app_upload.html', {'form':form, 'form2':form2})
+    return render(request, 'apps/app_upload.html', {'form':form})
 
-@login_required
-def screenshot_form(request):
-
-    if request.method == "POST":
-        form = ScreenshotForm(request.POST, request.FILES)
-        print(form.errors)
-
-        if form.is_valid():
-            form.save()
-            print("VAlID")
-        
-
-'''
-def app_formset(request):
-    
-    formset = AppFormset(request.POST, request.FILES or None)
-
-    if request.method == 'POST':
-     
-        print(formset.errors)
-
-        for form in formset:
-            if form.is_valid():
-                form.save()
-                print("VALID")
-            else: formset=formset()
-    
-    form = formset(queryset=Screenshots.objects.none())
-       
-    
-    #return render(request, 'apps/app_upload.html', {'form':form})
-    return render(request, 'apps/upload_formset.html', {'form':form})
-'''
 
 class AppView(DetailView):
     model = AppModel
@@ -80,8 +40,8 @@ class AppView(DetailView):
         context['stats'] = AppStats.objects.all()
         return context
 
-class AppListView(ListView):
 
+class AppListView(ListView):
     model = AppModel
     template_name = 'apps/homepage.html'
     context_object_name= 'apps_list'

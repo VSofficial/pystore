@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.views.generic.detail import DetailView
@@ -5,8 +6,8 @@ from django.views.generic.list import ListView
 from .forms import AppForm
 from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
-from .models import AppModel, Issues, AppStats
-
+from .models import AppModel, Issues, AppStats, Comments, Rating
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -28,17 +29,38 @@ def app_form(request):
     return render(request, 'apps/app_upload.html', {'form':form})
 
 
+
+@login_required
+def apps_and_comments(request):
+
+    rating_obj = Rating.objects.all()
+    avg_rating = Rating.objects.aggregate(total_rating=Sum('rating'))
+    avgr = avg_rating['total_rating'] / 2
+
+
+    return {'context_appmodel': AppModel.objects.all(),
+            'context_comments': Comments.objects.all(),
+            'context_rating': avgr}
+
+
 class AppView(DetailView):
     model = AppModel
+    model_comments = Comments
     template_name = 'apps/app_page.html'
     context_object_name = 'apps'
     slug_url_kwarg = 'slug'
 
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         context['issues'] = Issues.objects.all()
         context['stats'] = AppStats.objects.all()
+        context['comments'] = Comments.objects.all()
         return context
+
+
 
 
 class AppListView(ListView):
@@ -53,3 +75,4 @@ class AppListView(ListView):
     def get_queryset(self):
         app_data = self.model.objects.all()
         return app_data
+

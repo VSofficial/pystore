@@ -1,0 +1,26 @@
+{% for cmt in context_comments %}
+<div class="card">
+    <div class="card-body">
+      <h6 class="card-title"> {{ cmt.user }}</h4>
+      
+      <p class="card-text"> {{ cmt.comment }}</p>
+      
+      <p class="card-text"> Date {{ cmt.date }}</p>
+      <p class="card-text"> People who found it useful </p>
+   
+    </div>
+  </div>
+  {% endfor %}
+
+  <script>
+    function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+  </script>

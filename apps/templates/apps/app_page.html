@@ -1,6 +1,10 @@
 {% extends "authapp/templates/base.html" %}
+{% load bootstrap4 %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +41,36 @@
         <lable style="font-size:20px; text-align:center; margin:5px;"> Screenshots </lable>
         {% include 'apps/image_carousel.html' %}  
         
-        
-        <lable style="font-size:20px;  margin:10px;"> Reviews </lable>
-        {% include 'apps/reviews.html' %}  
+        <div>
+          {% include 'apps/reviews.html' %}
+        </div>
       
+
+        <div>
+          <lable style="font-size:20px; margin:10px;"> Comments </lable>
+        {% include 'apps/comments.html' %}
+        </div>
+        
       
       </div>
+
+
+<script>
+  $( document ).ready(function() {
+    console.log( "ready! f" );
+});
+</script>
+
+
+
 </body>
 </html>
+
+
 {% endblock content %}
+
+
+
+
+
+

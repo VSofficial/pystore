@@ -3,7 +3,8 @@ from django.db import models
 import re
 import datetime
 from authapp.models import UserRegistrationModel
-# Create your models here.
+
+
 
 
 class AppModel(models.Model):
@@ -46,13 +47,20 @@ class Comments(models.Model):
     comment = models.CharField(max_length=200, blank=True, null=True)
     user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    def __str__(self):
+            return self.comment
+
+
+    
 class Issues(models.Model):
     issue = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
 
 class Rating(models.Model):
     rating = models.IntegerField(null=True, blank=True)
+    app = models.ForeignKey(AppModel, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
 
 

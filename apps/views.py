@@ -30,7 +30,7 @@ def app_form(request):
 
 
 
-@login_required
+
 def apps_and_comments(request):
 
     rating_obj = Rating.objects.all()
@@ -75,4 +75,18 @@ class AppListView(ListView):
     def get_queryset(self):
         app_data = self.model.objects.all()
         return app_data
+
+
+def SearchList(request):
+    if request.method == 'GET':
+        search_text = request.GET.get('search')
+
+        mydata = AppModel.objects.filter(appname__contains=search_text).values() 
+
+        if mydata.exists():
+            return render(request, 'apps/tools/searchlist.html', {'result':mydata})
+        else: return render(request, 'apps/tool/searchlist.html', {'result':'not searching'})
+
+
+
 

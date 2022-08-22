@@ -1,0 +1,21 @@
+{% block content %}
+
+
+<div> Search results... </div>
+<div class="row" id="container" style="overflow-y:auto;">
+{% for apps in apps_list %}
+<div class="col-xxl-6 col-md-3">
+<div class="card" style="width:175px; height:200px; margin:10px;">
+    
+    {% if apps.icon %}
+    <img class="card-img-top" src="{{ apps.icon.url }}" alt="Card image"   width="100px" height="140px" />
+    {% endif %}
+    <div class="card-body" style="margin-top:0px;">
+    <a href="{% url 'apps:appview' apps.slug  %}" ><h5>{{apps.appname}}</h5> </a>
+    
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

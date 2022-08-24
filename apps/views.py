@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
 from .models import AppModel, Issues, AppStats, Comments, Rating
 from django.db.models import Sum
-
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 # Create your views here.
 
 
@@ -79,13 +80,14 @@ class AppListView(ListView):
 
 def SearchList(request):
     if request.method == 'GET':
-        search_text = request.GET.get('search')
-
-        mydata = AppModel.objects.filter(appname__contains=search_text).values() 
+        search_text = request.GET.get('inputValue')
+        #search_text="notes"
+        mydata = AppModel.objects.all().filter(appname__contains=search_text).values_list()
+        #list1 = queryset_to_dict(mydata)
 
         if mydata.exists():
-            return render(request, 'apps/tools/searchlist.html', {'result':mydata})
-        else: return render(request, 'apps/tool/searchlist.html', {'result':'not searching'})
+            return JsonResponse({'response': list(mydata)})
+        else: return JsonResponse("not working")
 
 
 

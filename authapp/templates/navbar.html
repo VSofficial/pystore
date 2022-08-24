@@ -35,8 +35,8 @@
           
         </ul>
     
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" id="searchinput" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" id="searchbutton" type="submit">Search</button>
      
       </div>
       {% if request.user.is_authenticated %}
@@ -62,3 +62,41 @@
       </span>
     </div>
   </nav>
+
+
+
+
+
+<script>
+
+  $(document).ready(function() {
+  
+    $("#searchbutton").click(function(e) {
+      e.preventDefault();
+      console.log("ge");
+      var inputValue = document.getElementById("searchinput").value;
+    $.ajax({
+      URL: "127.0.0.1:8100/search/",
+      type: "GET",
+      data: {
+        inputValue: inputValue
+      },
+      success: function(data) {
+
+        console.log(data.response);
+      },
+      error: function() {
+        alert('ajax error. Maybe StackOverflow does not allow ajax requests');
+      }
+    });
+
+  });
+
+
+
+
+
+  });
+  
+  
+  </script>

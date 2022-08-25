@@ -10,6 +10,9 @@ from .models import AppModel, Issues, AppStats, Comments, Rating
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 
@@ -77,16 +80,23 @@ class AppListView(ListView):
         app_data = self.model.objects.all()
         return app_data
 
-
+@csrf_exempt
 def SearchList(request):
     if request.method == 'GET':
-        search_text = request.GET.get('inputValue')
+        ski = request.GET.get('inputValue', None)
+        search_text="notes"
         #search_text="notes"
-        mydata = AppModel.objects.all().filter(appname__contains=search_text).values_list()
-        #list1 = queryset_to_dict(mydata)
+        if ski==None:
+            ski="notes"
 
+        mydata = AppModel.objects.all().filter(appname__contains=ski).values_list()
+        #list1 = queryset_to_dict(mydata)
+        data_obj = {'response': list(mydata)}
+        print(ski)
         if mydata.exists():
-            return JsonResponse({'response': list(mydata)})
+            print(mydata)
+            return JsonResponse(data_obj)
+            
         else: return JsonResponse("not working")
 
 

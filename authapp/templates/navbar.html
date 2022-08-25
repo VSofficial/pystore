@@ -76,17 +76,26 @@
       console.log("ge");
       var inputValue = document.getElementById("searchinput").value;
     $.ajax({
-      URL: "127.0.0.1:8100/search/",
-      type: "GET",
-      data: {
-        inputValue: inputValue
+      type:'GET',
+      url: '{% url "apps:search" %}',
+      data_obj: {
+        'inputValue': inputValue,
       },
-      success: function(data) {
+      dataType :'json',
+      success: function(data_obj) {
+        if (data_obj.response)
+        {
 
-        console.log(data.response);
+        console.log(data_obj.response);
+        console.log(inputValue);
+        }
       },
       error: function() {
         alert('ajax error. Maybe StackOverflow does not allow ajax requests');
+        console.log("hehe"+inputValue);
+      },
+      failure: function() {
+        console.print("Hey");
       }
     });
 

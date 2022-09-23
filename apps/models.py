@@ -20,6 +20,8 @@ class AppModel(models.Model):
     requirement = models.CharField(blank=True, null=True, max_length=50)
     update_date =models.DateField(auto_now=True)
 
+    id = models.BigAutoField(primary_key=True)
+
     CATEGORY_CHOICE = (
     ('ML', "Machine Learning"),
     ('BIGDATA', "Big Data"),

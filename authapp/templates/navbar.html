@@ -77,7 +77,7 @@
       var inputValue = document.getElementById("searchinput").value;
     $.ajax({
       type:'GET',
-      url: '{% url "apps:search" %}',
+      url: "{% url 'apps:search' %}",
       data_obj: {
         'inputValue': inputValue,
       },

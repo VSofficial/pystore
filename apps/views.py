@@ -83,7 +83,7 @@ class AppListView(ListView):
 @csrf_exempt
 def SearchList(request):
     if request.method == 'GET':
-        ski = request.GET.get('inputValue', None)
+        ski = request.GET.get('inputValue')
         search_text="notes"
         #search_text="notes"
         if ski==None:

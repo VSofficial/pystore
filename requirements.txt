@@ -1,3 +1,4 @@
+setuptools==0.7.3
 asgiref==3.3.1
 beautifulsoup4==4.9.3
 Django==3.1.7

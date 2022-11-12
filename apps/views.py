@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from .forms import AppForm
 from django.contrib.auth.decorators import login_required
 #from .formsets import AppFormset
-from .models import AppModel, Issues, AppStats, Comments, Rating
+from .models import AppModel, Issues, Comments, Rating
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
@@ -60,7 +60,7 @@ class AppView(DetailView):
         context = super().get_context_data(**kwargs)
         
         context['issues'] = Issues.objects.all()
-        context['stats'] = AppStats.objects.all()
+        #context['stats'] = AppStats.objects.all()
         context['comments'] = Comments.objects.all()
         return context
 

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'authapp',
     'apps',
-    'bootstrap4'
+    'bootstrap4',
+    'additional'
 ]
 
 MIDDLEWARE = [

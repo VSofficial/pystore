@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import app_form, AppView, AppListView, app_form, SearchList
 from django.urls import reverse_lazy
-from .models import AppModel, AppStats, Comments, Issues
+from .models import AppModel, Comments, Issues
 from apps import admin
 from django.conf import settings
 from django.conf.urls.static import static

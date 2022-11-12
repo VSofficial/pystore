@@ -20,7 +20,7 @@ class AppModel(models.Model):
     requirement = models.CharField(blank=True, null=True, max_length=50)
     update_date =models.DateField(auto_now=True)
 
-    id = models.BigAutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
 
     CATEGORY_CHOICE = (
     ('ML', "Machine Learning"),
@@ -66,10 +66,11 @@ class Rating(models.Model):
     user = models.ForeignKey(UserRegistrationModel, on_delete=models.CASCADE)
 
 
+'''
 class AppStats(models.Model):
     total_downloads = models.IntegerField(default=0)
     total_ratings = models.IntegerField(default=0)
     download_size_py = models.IntegerField(default=0)
     download_size_windows = models.IntegerField(default=0)
     app = models.ForeignKey(AppModel, on_delete=models.CASCADE)
-
+'''

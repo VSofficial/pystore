@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('authapp.urls', namespace='authapp')),
     path('', include('apps.urls', namespace='apps')),
     path('', include('api.urls', namespace='apis')),
+    path('', include('additional.urls', namespace='additional')),
     path('admin/', admin.site.urls),
 ]
